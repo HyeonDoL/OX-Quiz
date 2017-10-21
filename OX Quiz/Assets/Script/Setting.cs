@@ -11,7 +11,6 @@ public class Setting : MonoBehaviour
     private void Awake()
     {
         string[] setting = Parser.Parse("Setting")[0];
-
         int temp;
 
         int.TryParse(setting[0], out temp);
