@@ -21,9 +21,7 @@ public class Setting : MonoBehaviour
 
         isRandom = setting[2].Equals('O');
 
-        if(isRandom)
-        {
-            // TODO : List를 랜덤하게 섞기
-        }
+        if (isRandom)
+            QuizManager.Instance.ShuffleList();
     }
 }

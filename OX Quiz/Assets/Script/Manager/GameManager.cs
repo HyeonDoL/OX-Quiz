@@ -17,5 +17,23 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Setting setting;
 
+    private int rightAnswerCount;
+    private int currentQuestionCount;
 
+    public bool isOsign { get; set; }
+
+    private void Awake()
+    {
+        rightAnswerCount = 0;
+        currentQuestionCount = 0;
+
+        isOsign = false;
+    }
+
+    public Setting GetSetting() { return setting; }
+
+    public void NextQuestion()
+    {
+        QuizManager.Instance.GetQuestion(++currentQuestionCount);
+    }
 }
