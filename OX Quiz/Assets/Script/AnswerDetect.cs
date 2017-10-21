@@ -11,11 +11,11 @@ public class AnswerDetect : MonoBehaviour
     [SerializeField]
     private AnswerType answer;
 
-    private bool isOsign;
+    private string isOsign;
 
     private void Awake()
     {
-        isOsign = (answer == AnswerType.O);
+        isOsign = (answer == AnswerType.O) ? "O" : "X";
     }
 
     private void OnTriggerEnter(Collider other)

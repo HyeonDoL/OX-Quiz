@@ -16,13 +16,12 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private Text questionText;
-
     private List<string[]> quizList;
 
     private void Awake()
     {
+        instance = this;
+
         quizList = Parser.Parse("QuizList");
     }
 
@@ -33,11 +32,6 @@ public class QuizManager : MonoBehaviour
 
     public void ShuffleList()
     {
-        for (int i = 0; i < quizList.Count; ++i)
-            Debug.Log(quizList[i][0] + quizList[i][1]);
-
-        Debug.Log("---------------------------");
-
         for (int i = quizList.Count - 1; i > 0; i--)
         {
             int r = Random.Range(0, i);
@@ -45,8 +39,5 @@ public class QuizManager : MonoBehaviour
             quizList[i] = quizList[r];
             quizList[r] = tmp;
         }
-
-        for(int i = 0; i < quizList.Count; ++i)
-            Debug.Log(quizList[i][0] + quizList[i][1]);
     }
 }

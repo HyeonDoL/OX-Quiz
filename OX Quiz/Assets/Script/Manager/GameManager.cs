@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,23 +18,63 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Setting setting;
 
+    [SerializeField]
+    private Text questionText;
+
+    [SerializeField]
+    private Text indexText;
+
     private int rightAnswerCount;
     private int currentQuestionCount;
 
-    public bool isOsign { get; set; }
+    private string answer;
+
+    public string isOsign { get; set; }
 
     private void Awake()
     {
+        instance = this;
+
         rightAnswerCount = 0;
         currentQuestionCount = 0;
 
-        isOsign = false;
+        isOsign = "O";
+
+        NextQuestion();
     }
 
     public Setting GetSetting() { return setting; }
 
     public void NextQuestion()
     {
-        QuizManager.Instance.GetQuestion(++currentQuestionCount);
+        CheckRightAnswer();
+
+        string[] question;
+
+        question = QuizManager.Instance.GetQuestion(currentQuestionCount);
+
+        questionText.text = question[0];
+        answer = question[1];
+
+        currentQuestionCount++;
+
+        indexText.text = currentQuestionCount.ToString() + " / " + setting.maxQuestionCount.ToString();
+    }
+
+    private void CheckRightAnswer()
+    {
+        if (currentQuestionCount != 0)
+        {
+            if (isOsign == answer)
+            {
+                rightAnswerCount++;
+                Debug.Log("맞았습니다!");
+            }
+            else
+            {
+                // TODO : 틀렸을 때 상황
+                Debug.Log("틀렸습니다!");
+            }
+        }
     }
 }

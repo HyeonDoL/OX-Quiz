@@ -30,6 +30,6 @@ public class Timer : MonoBehaviour
             currentTime = 0f;
         }
 
-        timeText.text = currentTime.ToString();
+        timeText.text = (maxTime - currentTime).ToString();
     }
 }

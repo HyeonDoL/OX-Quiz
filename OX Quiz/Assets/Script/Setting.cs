@@ -19,7 +19,7 @@ public class Setting : MonoBehaviour
         int.TryParse(setting[1], out temp);
         maxLimitTime = temp;
 
-        isRandom = setting[2].Equals('O');
+        isRandom = setting[2].Equals("O");
 
         if (isRandom)
             QuizManager.Instance.ShuffleList();
