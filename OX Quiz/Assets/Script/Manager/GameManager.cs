@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text indexText;
 
+    [SerializeField]
+    private Animator refereeAni;
+
+    [SerializeField]
+    private PlayerBehaviour playerBehaviour;
+
     private int rightAnswerCount;
     private int currentQuestionCount;
 
@@ -55,6 +61,8 @@ public class GameManager : MonoBehaviour
 
         CheckRightAnswer();
 
+        RefereeAnimation();
+
         string[] question;
 
         question = QuizManager.Instance.GetQuestion(currentQuestionCount);
@@ -74,13 +82,24 @@ public class GameManager : MonoBehaviour
             if (isOsign == answer)
             {
                 rightAnswerCount++;
-                Debug.Log("맞았습니다!");
+
+                playerBehaviour.Win();
             }
             else
             {
                 // TODO : 틀렸을 때 상황
-                Debug.Log("틀렸습니다!");
             }
+        }
+    }
+    private void RefereeAnimation()
+    {
+        if (currentQuestionCount != 0)
+        {
+            if (answer == "O")
+                refereeAni.SetTrigger("HandUp_Right");
+
+            else
+                refereeAni.SetTrigger("HandUp_Left");
         }
     }
 }

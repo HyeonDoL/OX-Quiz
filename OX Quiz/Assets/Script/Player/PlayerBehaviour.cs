@@ -9,6 +9,9 @@ public enum PlayerState
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField]
+    private float winTime;
+
+    [SerializeField]
     private PlayerMove move;
 
     [SerializeField]
@@ -54,5 +57,16 @@ public class PlayerBehaviour : MonoBehaviour
             return;
 
         ani.SetBool("isMove", true);
+    }
+
+    public void Win()
+    {
+        ani.SetBool("isWin", true);
+
+        Invoke("DisableWin", winTime);
+    }
+    private void DisableWin()
+    {
+        ani.SetBool("isWin", false);
     }
 }

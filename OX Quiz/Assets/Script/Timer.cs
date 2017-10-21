@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField]
-    private Text timeText;
+    private TextMesh timeText;
 
     private float maxTime;
     private float currentTime;
@@ -30,6 +30,6 @@ public class Timer : MonoBehaviour
             currentTime = 0f;
         }
 
-        timeText.text = (maxTime - currentTime).ToString();
+        timeText.text = ((int)(maxTime - currentTime)).ToString();
     }
 }
