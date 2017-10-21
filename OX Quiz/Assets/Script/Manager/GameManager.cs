@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour
 
     public void NextQuestion()
     {
+        if (currentQuestionCount >= setting.maxQuestionCount)
+        {
+            // TODO : 결과창 만들기
+            return;
+        }
+
         CheckRightAnswer();
 
         string[] question;
