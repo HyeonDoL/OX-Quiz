@@ -109,6 +109,8 @@ GameObject:
   - component: {fileID: 114721496158638838}
   - component: {fileID: 114169753139710468}
   - component: {fileID: 111518207085073358}
+  - component: {fileID: 114145628526590484}
+  - component: {fileID: 114760004722428208}
   m_Layer: 5
   m_Name: Canvas (UI_Result)
   m_TagString: Untagged
@@ -144,7 +146,7 @@ GameObject:
   - component: {fileID: 222658913233140320}
   - component: {fileID: 114644236677751616}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Comment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,6 +212,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114145628526590484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1696411315284488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f91a1bb41ce90498d7c583f9d127a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightAnswerText: {fileID: 114366328926021370}
+  commentText: {fileID: 114644236677751616}
+  commentSheet: {fileID: 11400000, guid: 8821ba3bd2bc18c43ae74d4d1f5b9f8c, type: 2}
 --- !u!114 &114169753139710468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,7 +328,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '##'
+  m_Text: 0
 --- !u!114 &114644236677751616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -394,6 +410,20 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114760004722428208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1696411315284488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f91a1bb41ce90498d7c583f9d127a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightAnswerText: {fileID: 114366328926021370}
+  commentText: {fileID: 114644236677751616}
+  commentSheet: {fileID: 11400000, guid: 8821ba3bd2bc18c43ae74d4d1f5b9f8c, type: 2}
 --- !u!114 &114877272932702502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -432,7 +462,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114179998021471746}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114760004722428208}
+        m_MethodName: ReturnMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114886328531797856
@@ -500,7 +541,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114223964640345880}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114760004722428208}
+        m_MethodName: ReStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114996919219407290
@@ -596,7 +648,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &224210170341795014
 RectTransform:
@@ -634,8 +686,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 331}
+  m_AnchoredPosition: {x: 0, y: 93}
+  m_SizeDelta: {x: 400, y: 497}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224357397997114218
 RectTransform:
@@ -652,8 +704,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75.25}
-  m_SizeDelta: {x: 400, y: 180.5}
+  m_AnchoredPosition: {x: 0, y: -165.42}
+  m_SizeDelta: {x: 400, y: 166.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224394656619247986
 RectTransform:
