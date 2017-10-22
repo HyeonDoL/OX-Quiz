@@ -15,7 +15,7 @@ public class AiMove : MonoBehaviour, IAiMove
 
     private void Start()
     {
-        AiMovementManager.Instance.AddMoveEvent(this);
+        AiController.Instance.AddMoveEvent(this);
     }
 
     public IEnumerator Move(Vector3 targetPosition)
