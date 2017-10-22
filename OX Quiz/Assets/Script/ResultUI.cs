@@ -14,7 +14,7 @@ public class ResultUI : MonoBehaviour
 
     private void OnEnable()
     {
-        rightAnswerText.text = GameManager.Instance.currentQuestionCount.ToString();
+        rightAnswerText.text = GameManager.Instance.rightAnswerCount.ToString();
 
         // TODO : Sheet에서 공식에 따라 도출된 값으로 ResultCommentData 시트 찾아와서 안에 들어있는 Comment 텍스트를 commentText.text에 넣어주기
     }
