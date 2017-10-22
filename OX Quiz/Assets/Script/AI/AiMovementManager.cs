@@ -32,7 +32,8 @@ public class AiController : MonoBehaviour
 
     private List<IAiMove> aiMoveEventList;
 
-
+    public delegate void WinDelegate();
+    public event WinDelegate winEvent;
 
     public void AddMoveEvent(IAiMove aiMoveEvent)
     {
@@ -70,6 +71,11 @@ public class AiController : MonoBehaviour
         return new Vector3(Random.Range(xMin, xMax),
                                     tempRect.Left.position.y,
                                     Random.Range(zMin, zMax));
+    }
+
+    public void WinAi()
+    {
+        winEvent();
     }
 }
 
