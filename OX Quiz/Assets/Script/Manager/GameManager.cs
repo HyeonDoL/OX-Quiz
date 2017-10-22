@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject resultCanvas;
 
-
     private int currentQuestionCount;
 
     private string answer;

@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class AiMovementManager : MonoBehaviour
+public class AiController : MonoBehaviour
 {
-    private static AiMovementManager instance = null;
-    public static AiMovementManager Instance
+    private static AiController instance = null;
+    public static AiController Instance
     {
         get
         {
             if (instance)
                 return instance;
             else
-                return instance = new GameObject("AiMovementManager").AddComponent<AiMovementManager>();
+                return instance = new GameObject("AiController").AddComponent<AiController>();
         }
     }
     
@@ -31,6 +31,9 @@ public class AiMovementManager : MonoBehaviour
     public Rect oSignRect;
 
     private List<IAiMove> aiMoveEventList;
+
+    public delegate void WinDelegate();
+    public event WinDelegate winEvent;
 
     public void AddMoveEvent(IAiMove aiMoveEvent)
     {
@@ -68,6 +71,11 @@ public class AiMovementManager : MonoBehaviour
         return new Vector3(Random.Range(xMin, xMax),
                                     tempRect.Left.position.y,
                                     Random.Range(zMin, zMax));
+    }
+
+    public void WinAi()
+    {
+        winEvent();
     }
 }
 
