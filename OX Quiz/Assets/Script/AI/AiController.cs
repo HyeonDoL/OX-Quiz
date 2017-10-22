@@ -25,12 +25,12 @@ public class AiController : MonoBehaviour
     }
 
     [SerializeField]
-    public Rect xSignRect;
+    private Rect xSignRect;
 
     [SerializeField]
-    public Rect oSignRect;
+    private Rect oSignRect;
 
-    private List<IAiMove> aiMoveEventList;
+    private List<IAiMove> aiMoveEventList = new List<IAiMove>();
 
     public delegate void WinDelegate();
     public event WinDelegate winEvent;
@@ -58,6 +58,8 @@ public class AiController : MonoBehaviour
 
         else
             tempRect = xSignRect;
+
+        tempRect = xSignRect;
 
         float xMin, xMax;
         float zMin, zMax;

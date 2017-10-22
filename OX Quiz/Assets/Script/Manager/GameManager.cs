@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
         questionText.text = question[0];
         answer = question[1];
 
+        AiController.Instance.MoveAi();
+
         currentQuestionCount++;
 
         indexText.text = currentQuestionCount.ToString() + " / " + setting.maxQuestionCount.ToString();
