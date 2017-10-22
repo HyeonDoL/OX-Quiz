@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum PlayerState
+public enum CharacterState
 {
     Idle,
     Run
@@ -19,17 +19,17 @@ public class PlayerBehaviour : MonoBehaviour
 
     private float horizontal, vertical;
 
-    private PlayerState state;
+    private CharacterState state;
 
     private void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        state = PlayerState.Idle;
+        state = CharacterState.Idle;
 
         if (horizontal != 0 || vertical != 0)
-            state = PlayerState.Run;
+            state = CharacterState.Run;
     }
 
     private void FixedUpdate()
@@ -40,7 +40,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Idle()
     {
-        if (state != PlayerState.Idle)
+        if (state != CharacterState.Idle)
             return;
 
         ani.SetBool("isMove", false);
@@ -53,7 +53,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         move.Run(horizontal, vertical);
 
-        if (state != PlayerState.Run)
+        if (state != CharacterState.Run)
             return;
 
         ani.SetBool("isMove", true);
