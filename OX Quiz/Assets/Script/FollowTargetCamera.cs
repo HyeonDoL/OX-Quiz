@@ -10,6 +10,7 @@ public class FollowTargetCamera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        m_currentPos = m_target.position;
 	}
 	
 	// Update is called once per frame
