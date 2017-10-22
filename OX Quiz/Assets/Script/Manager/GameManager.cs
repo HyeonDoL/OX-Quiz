@@ -53,15 +53,15 @@ public class GameManager : MonoBehaviour
 
     public void NextQuestion()
     {
+        RefereeAnimation();
+
+        CheckRightAnswer();
+
         if (currentQuestionCount >= setting.maxQuestionCount)
         {
             // TODO : 결과창 만들기
             return;
         }
-
-        CheckRightAnswer();
-
-        RefereeAnimation();
 
         string[] question;
 
