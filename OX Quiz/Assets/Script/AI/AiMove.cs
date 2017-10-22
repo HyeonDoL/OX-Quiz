@@ -24,6 +24,8 @@ public class AiMove : MonoBehaviour, IAiMove
 
         Vector3 startPosition = transform.position;
 
+        targetPosition.y = startPosition.y;
+
         transform.LookAt(targetPosition);
 
         while(t < 1f)

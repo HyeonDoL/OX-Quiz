@@ -30,12 +30,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerBehaviour playerBehaviour;
 
+    [SerializeField]
+    private GameObject resultCanvas;
+
     private int rightAnswerCount;
-    private int currentQuestionCount;
 
     private string answer;
 
     public string isOsign { get; set; }
+    public int currentQuestionCount { private set; get; }
 
     private void Awake()
     {
@@ -59,7 +62,10 @@ public class GameManager : MonoBehaviour
 
         if (currentQuestionCount >= setting.maxQuestionCount)
         {
-            // TODO : 결과창 만들기
+            Timer.isStopTimer = true;
+
+            resultCanvas.SetActive(true);
+
             return;
         }
 
