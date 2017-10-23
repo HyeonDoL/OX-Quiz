@@ -16,7 +16,7 @@ public class ResultUI : MonoBehaviour
     {
         rightAnswerText.text = GameManager.Instance.rightAnswerCount.ToString();
 
-        // TODO : Sheet에서 공식에 따라 도출된 값으로 ResultCommentData 시트 찾아와서 안에 들어있는 Comment 텍스트를 commentText.text에 넣어주기
+        commentText.text = GetComment(GameManager.Instance.GetSetting().maxQuestionCount, GameManager.Instance.rightAnswerCount);
     }
 
     public void ReStart()
@@ -27,5 +27,20 @@ public class ResultUI : MonoBehaviour
     public void ReturnMenu()
     {
         // TODO : Menu 버튼을 눌렀을 시 실행될 코드
+    }
+
+    private string GetComment(float questionCount, float rightAnswerCount)
+    {
+        float percentage = rightAnswerCount / questionCount * 100;
+
+        for(int i = 0; i < commentSheet.Count; ++i)
+        {
+            ResultCommentData commentData = commentSheet.m_data[i];
+
+            if (commentData.percentage <= percentage)
+                return commentData.comment;
+        }
+
+        return "더 열심히 공부합시다";
     }
 }

@@ -5,7 +5,8 @@ using UnityEditor;
 [System.Serializable]
 public class ResultCommentData
 {
-    public int score;
+    public int percentage;
+
     public string comment;
 }
 
