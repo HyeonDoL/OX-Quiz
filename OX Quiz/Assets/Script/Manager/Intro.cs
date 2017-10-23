@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class Intro : MonoBehaviour {
 
-    [SerializeField] private GameObject m_fadePanel;
     [SerializeField] private GameObject m_camera;
     [SerializeField] private GameObject m_referee;
+    [SerializeField] private GameObject m_Mainmenu;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         StartCoroutine(PlayIntro());
 	}
 	
     private IEnumerator PlayIntro()
     {
-        m_fadePanel.GetComponent<Animation>().Play();
+        FadeBehavior.FadeOut(1f);
 
-        yield return new WaitForSeconds(1f);
-        m_camera.GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(1.5f);
+        m_referee.GetComponent<Animator>().SetTrigger("HandUp_Both");
 
+        yield return new WaitForSeconds(0.8f);
+        m_camera.GetComponent<Animator>().SetTrigger("On_Intro");
+        
+        yield return new WaitForSeconds(0.8f);
+        m_Mainmenu.SetActive(true);
 
+        Destroy(gameObject);
     }
 }
