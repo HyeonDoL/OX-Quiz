@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
 
         timeText.text = ((int)(maxTime - currentTime)).ToString();
 
-        isStopTimer = false;
+        isStopTimer = true;
     }
 
     private void Update()
