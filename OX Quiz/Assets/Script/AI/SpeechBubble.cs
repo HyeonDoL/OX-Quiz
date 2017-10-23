@@ -29,6 +29,8 @@ public class SpeechBubble : MonoBehaviour
 
     private void Start()
     {
+        OnSpeechBubble(false);
+
         StartCoroutine(AppearSpeechBubble());
     }
 
@@ -51,13 +53,18 @@ public class SpeechBubble : MonoBehaviour
 
             commentText.text = comment;
 
-            panel.SetActive(true);
+            OnSpeechBubble(true);
 
             yield return new WaitForSeconds(appearTime);
 
-            commentText.text = "";
-
-            panel.SetActive(false);
+            OnSpeechBubble(false);
         }
+    }
+
+    private void OnSpeechBubble(bool on)
+    {
+        commentText.gameObject.SetActive(on);
+
+        panel.SetActive(on);
     }
  }
