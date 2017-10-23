@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Name: ResultCommentSheet
   m_EditorClassIdentifier: 
   m_data:
-  - score: 0
-    comment: 
-  - score: 0
-    comment: 
-  - score: 0
-    comment: 
-  - score: 0
-    comment: 
-  - score: 0
-    comment: 
+  - percentage: 100
+    comment: "\uC644\uBCBD\uD574\uC694!"
+  - percentage: 80
+    comment: "\uC798\uD588\uC5B4\uC694!"
+  - percentage: 60
+    comment: "\uC74C...\uAD1C\uCC2E\uC544\uC694!"
+  - percentage: 40
+    comment: "\uB354 \uACF5\uBD80\uAC00 \uD544\uC694\uD574\uC694\u3160"
+  - percentage: 0
+    comment: "\uC5F4\uC2EC\uD788 \uD574\uC57C\uACA0\uC5B4\uC694"

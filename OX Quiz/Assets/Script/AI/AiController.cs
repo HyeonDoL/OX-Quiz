@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AiController : MonoBehaviour
@@ -40,7 +41,7 @@ public class AiController : MonoBehaviour
     {
         for (int i = 0; i < aiMoveEventList.Count; ++i)
         {
-            aiMoveEventList[i].Move(GetRandomPosition());
+            StartCoroutine(aiMoveEventList[i].Move(GetRandomPosition()));
         }
     }
     private Vector3 GetRandomPosition()
@@ -77,5 +78,5 @@ public class AiController : MonoBehaviour
 
 public interface IAiMove
 {
-    void Move(Vector3 targetPosition);
+    IEnumerator Move(Vector3 targetPosition);
 }

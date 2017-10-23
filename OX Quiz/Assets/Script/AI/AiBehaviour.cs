@@ -10,10 +10,10 @@ public class AiBehaviour : MonoBehaviour, IAiMove
     private float winTime;
 
     [SerializeField]
-    private Rigidbody rigidbody;
+    private float stopDistance = 1.5f;
 
     [SerializeField]
-    private AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    private Rigidbody rigidbody;
 
     [SerializeField]
     private Animator aiAni;
@@ -24,34 +24,28 @@ public class AiBehaviour : MonoBehaviour, IAiMove
         AiController.Instance.winEvent += Win;
     }
 
-    public IEnumerator Move(Vector3 targetPosition)
+    IEnumerator IAiMove.Move(Vector3 targetPosition)
     {
         aiAni.SetBool("isMove", true);
-
-        float t = 0f;
 
         Vector3 startPosition = transform.position;
 
         targetPosition.y = startPosition.y;
 
-        while(t < 1f)
+        Vector3 direction = (targetPosition - startPosition).normalized;
+
+        transform.LookAt(targetPosition);
+
+        while (Vector3.Distance(transform.position, targetPosition) > stopDistance)
         {
-            if(t < 0.5f)
-                transform.LookAt(targetPosition);
+            transform.LookAt(targetPosition);
 
-            t += Time.deltaTime / moveSpeed;
-
-            rigidbody.MovePosition(Vector3.Lerp(startPosition, targetPosition, moveCurve.Evaluate(t)));
+            rigidbody.MovePosition(transform.position + direction * moveSpeed * Time.deltaTime);
 
             yield return null;
         }
 
         aiAni.SetBool("isMove", false);
-    }
-
-    void IAiMove.Move(Vector3 targetPosition)
-    {
-        StartCoroutine(Move(targetPosition));
     }
 
     public void Win()
