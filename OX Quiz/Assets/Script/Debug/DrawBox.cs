@@ -17,5 +17,6 @@ public class DrawBox : MonoBehaviour
 
         else
             Gizmos.DrawCube(this.transform.position, this.transform.localScale);
+
     }
 }

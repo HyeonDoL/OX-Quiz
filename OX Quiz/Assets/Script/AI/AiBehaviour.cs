@@ -4,7 +4,7 @@ using System.Collections;
 public class AiBehaviour : MonoBehaviour, IAiMove
 {
     [SerializeField]
-    private float moveTime;
+    private float moveSpeed;
 
     [SerializeField]
     private float winTime;
@@ -34,11 +34,12 @@ public class AiBehaviour : MonoBehaviour, IAiMove
 
         targetPosition.y = startPosition.y;
 
-        transform.LookAt(targetPosition);
-
         while(t < 1f)
         {
-            t += Time.deltaTime / moveTime;
+            if(t < 0.5f)
+                transform.LookAt(targetPosition);
+
+            t += Time.deltaTime / moveSpeed;
 
             rigidbody.MovePosition(Vector3.Lerp(startPosition, targetPosition, moveCurve.Evaluate(t)));
 

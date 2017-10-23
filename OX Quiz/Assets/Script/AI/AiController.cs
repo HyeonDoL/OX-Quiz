@@ -14,26 +14,22 @@ public class AiController : MonoBehaviour
                 return instance = new GameObject("AiController").AddComponent<AiController>();
         }
     }
-    
-    [System.Serializable]
-    public struct Rect
-    {
-        public Transform Left;
-        public Transform Right;
-        public Transform Top;
-        public Transform Bottom;
-    }
 
     [SerializeField]
-    private Rect xSignRect;
+    private DrawArea oSignSpawnArea;
 
     [SerializeField]
-    private Rect oSignRect;
+    private DrawArea xSignSpawnArea;
 
     private List<IAiMove> aiMoveEventList = new List<IAiMove>();
 
     public delegate void WinDelegate();
     public event WinDelegate winEvent;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public void AddMoveEvent(IAiMove aiMoveEvent)
     {
@@ -51,27 +47,25 @@ public class AiController : MonoBehaviour
     {
         bool randomSign = Random.Range(0, 2) == 1;
 
-        Rect tempRect;
+        DrawArea tempArea;
 
         if (randomSign)
-            tempRect = oSignRect;
+            tempArea = oSignSpawnArea;
 
         else
-            tempRect = xSignRect;
-
-        tempRect = xSignRect;
+            tempArea = xSignSpawnArea;
 
         float xMin, xMax;
         float zMin, zMax;
 
-        xMin = tempRect.Left.position.x;
-        xMax = tempRect.Right.position.x;
+        xMin = tempArea.GetLeft();
+        xMax = tempArea.GetRight();
 
-        zMin = tempRect.Bottom.position.z;
-        zMax = tempRect.Top.position.z;
+        zMin = tempArea.GetBottom();
+        zMax = tempArea.GetTop();
 
         return new Vector3(Random.Range(xMin, xMax),
-                                    tempRect.Left.position.y,
+                                    0,
                                     Random.Range(zMin, zMax));
     }
 
