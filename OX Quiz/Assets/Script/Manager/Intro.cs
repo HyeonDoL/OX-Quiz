@@ -18,5 +18,8 @@ public class Intro : MonoBehaviour {
         m_fadePanel.GetComponent<Animation>().Play();
 
         yield return new WaitForSeconds(1f);
+        m_camera.GetComponent<Animation>().Play();
+
+
     }
 }
