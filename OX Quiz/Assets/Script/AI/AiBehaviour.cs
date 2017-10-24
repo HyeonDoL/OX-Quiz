@@ -18,14 +18,18 @@ public class AiBehaviour : MonoBehaviour, IAiMove
     [SerializeField]
     private Animator aiAni;
 
+    private string isOsign;
+
     private void Start()
     {
         AiController.Instance.AddMoveEvent(this);
-        AiController.Instance.winEvent += Win;
+        AiController.Instance.answerDiscriminateEvent += AnswerDiscriminate;
     }
 
-    IEnumerator IAiMove.Move(Vector3 targetPosition)
+    IEnumerator IAiMove.Move(Vector3 targetPosition, string randomSign)
     {
+        isOsign = randomSign;
+
         aiAni.SetBool("isMove", true);
 
         Vector3 startPosition = transform.position;
@@ -48,7 +52,16 @@ public class AiBehaviour : MonoBehaviour, IAiMove
         aiAni.SetBool("isMove", false);
     }
 
-    public void Win()
+    public void AnswerDiscriminate()
+    {
+        if (isOsign == GameManager.Instance.answer)
+            Win();
+
+        else
+            Lose();
+    }
+
+    private void Win()
     {
         aiAni.SetBool("isWin", true);
 
@@ -57,5 +70,10 @@ public class AiBehaviour : MonoBehaviour, IAiMove
     private void DisableWin()
     {
         aiAni.SetBool("isWin", false);
+    }
+
+    private void Lose()
+    {
+        // TODO : Ai가 X에 있을 때 일어날 일들 구현
     }
 }

@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     private int currentQuestionCount;
 
-    private string answer;
+    public string answer { private set; get; }
 
     public string isOsign { get; set; }
     public int rightAnswerCount { private set; get; }
@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
         RefereeAnimation();
 
         CheckRightAnswer();
+
+        AiController.Instance.AnswerDiscriminate();
 
         if (currentQuestionCount >= setting.maxQuestionCount)
         {

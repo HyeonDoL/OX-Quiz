@@ -24,8 +24,8 @@ public class AiController : MonoBehaviour
 
     private List<IAiMove> aiMoveEventList = new List<IAiMove>();
 
-    public delegate void WinDelegate();
-    public event WinDelegate winEvent;
+    public delegate void AnswerDiscriminateDelegate();
+    public event AnswerDiscriminateDelegate answerDiscriminateEvent;
 
     private void Awake()
     {
@@ -41,13 +41,13 @@ public class AiController : MonoBehaviour
     {
         for (int i = 0; i < aiMoveEventList.Count; ++i)
         {
-            StartCoroutine(aiMoveEventList[i].Move(GetRandomPosition()));
+            bool randomSign = Random.Range(0, 2) == 1;
+
+            StartCoroutine(aiMoveEventList[i].Move(GetRandomPosition(randomSign), randomSign ? "O" : "X"));
         }
     }
-    private Vector3 GetRandomPosition()
+    private Vector3 GetRandomPosition(bool randomSign)
     {
-        bool randomSign = Random.Range(0, 2) == 1;
-
         DrawArea tempArea;
 
         if (randomSign)
@@ -70,13 +70,14 @@ public class AiController : MonoBehaviour
                                     Random.Range(zMin, zMax));
     }
 
-    public void WinAi()
+    public void AnswerDiscriminate()
     {
-        winEvent();
+        if(answerDiscriminateEvent != null)
+            answerDiscriminateEvent();
     }
 }
 
 public interface IAiMove
 {
-    IEnumerator Move(Vector3 targetPosition);
+    IEnumerator Move(Vector3 targetPosition, string randomSign);
 }
