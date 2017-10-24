@@ -62,11 +62,19 @@ public class GameManager : MonoBehaviour
     public string isOsign { get; set; }
     public int rightAnswerCount { private set; get; }
 
+    [Header("Sound Effects")]
+    [SerializeField] private SoundGroup correctSound;
+    [SerializeField] private SoundGroup incorrectSound;
+
+    private AudioSource audioSource;
+
     private void Awake()
     {
         instance = this;
 
         CurrentGameState = GameState.None;
+
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     public void GameStart()
@@ -92,6 +100,8 @@ public class GameManager : MonoBehaviour
 
     public void NextQuestion()
     {
+        audioSource.Stop();
+
         RefereeAnimation();
 
         CheckRightAnswer();
@@ -116,6 +126,8 @@ public class GameManager : MonoBehaviour
         currentQuestionCount++;
 
         indexText.text = currentQuestionCount.ToString() + " / " + setting.maxQuestionCount.ToString();
+
+        audioSource.Play();
     }
 
     private void CheckRightAnswer()
@@ -127,9 +139,13 @@ public class GameManager : MonoBehaviour
                 rightAnswerCount++;
 
                 playerBehaviour.Win();
+
+                SoundManager.Play(correctSound);
             }
             else
             {
+                SoundManager.Play(incorrectSound);
+
                 // TODO : 틀렸을 때 상황
             }
         }
