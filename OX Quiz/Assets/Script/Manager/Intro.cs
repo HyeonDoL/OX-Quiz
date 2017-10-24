@@ -6,10 +6,10 @@ public class Intro : MonoBehaviour {
 
     [SerializeField] private GameObject m_camera;
     [SerializeField] private GameObject m_referee;
-    [SerializeField] private GameObject m_Mainmenu;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         StartCoroutine(PlayIntro());
 	}
 	
@@ -24,7 +24,7 @@ public class Intro : MonoBehaviour {
         m_camera.GetComponent<Animator>().SetTrigger("On_Intro");
         
         yield return new WaitForSeconds(0.8f);
-        m_Mainmenu.SetActive(true);
+        GameManager.CurrentGameState = GameState.Main;
 
         Destroy(gameObject);
     }

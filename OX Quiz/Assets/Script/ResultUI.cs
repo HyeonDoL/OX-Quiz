@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResultUI : MonoBehaviour
 {
@@ -21,12 +22,12 @@ public class ResultUI : MonoBehaviour
 
     public void ReStart()
     {
-        // TODO : ReStart 버튼을 눌렀을 시 실행될 코드
+        GameManager.Instance.GameStart(); // Restart the Game
     }
 
     public void ReturnMenu()
     {
-        // TODO : Menu 버튼을 눌렀을 시 실행될 코드
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart Current Scene
     }
 
     private string GetComment(float questionCount, float rightAnswerCount)

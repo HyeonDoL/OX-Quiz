@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameState : byte
+{
+    None,
+    Main,
+    InGame,
+    Result
+}
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
@@ -14,6 +22,23 @@ public class GameManager : MonoBehaviour
                 return instance = new GameObject("GameManager").AddComponent<GameManager>();
         }
     }
+
+    private GameState currentGameState;
+    public static GameState CurrentGameState
+    {
+        get { return Instance.currentGameState; }
+        set
+        {
+            if (Instance.currentGameState != value)
+            {
+                Instance.currentGameState = value;
+                OnStateChange(Instance.currentGameState);
+            }
+        }
+    }
+
+    public delegate void StateChangeDelegate(GameState currentGameState);
+    public static event StateChangeDelegate OnStateChange;
 
     [SerializeField]
     private Setting setting;
@@ -30,9 +55,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerBehaviour playerBehaviour;
 
-    [SerializeField]
-    private GameObject resultCanvas;
-
     private int currentQuestionCount;
 
     public string answer { private set; get; }
@@ -44,12 +66,26 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
+        CurrentGameState = GameState.None;
+    }
+
+    public void GameStart()
+    {
         rightAnswerCount = 0;
         currentQuestionCount = 0;
 
         isOsign = "O";
 
+        CurrentGameState = GameState.InGame;
+        Timer.isStopTimer = false;
+
         NextQuestion();
+    }
+
+    public void GameOver()
+    {
+        CurrentGameState = GameState.Result;
+        Timer.isStopTimer = true;
     }
 
     public Setting GetSetting() { return setting; }
@@ -64,10 +100,7 @@ public class GameManager : MonoBehaviour
 
         if (currentQuestionCount >= setting.maxQuestionCount)
         {
-            Timer.isStopTimer = true;
-
-            resultCanvas.SetActive(true);
-
+            GameOver();
             return;
         }
 
